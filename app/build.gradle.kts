@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.openjfx.javafxplugin") version "0.0.13" // Ajout du plugin JavaFX
 }
 
 repositories {
@@ -16,11 +17,20 @@ repositories {
 }
 
 dependencies {
+    implementation("org.openjfx:javafx-controls:21.0.2")
+    implementation("org.openjfx:javafx-fxml:21.0.2")
+    implementation("org.openjfx:javafx-graphics:21.0.2")
+
     // Use JUnit test framework.
     testImplementation(libs.junit)
 
     // This dependency is used by the application.
     implementation(libs.guava)
+}
+
+javafx{
+    version = "21.0.2" // Version JavaFX
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.graphics") // Modules à inclure
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -32,5 +42,15 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "cc.lery.App"
+}
+
+tasks.register<Copy>("copyJavaFXModules") {
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.startsWith("javafx") }
+    })
+    into(layout.buildDirectory.dir("javafx"))
+}
+tasks.named("build") {
+    dependsOn("copyJavaFXModules")
 }

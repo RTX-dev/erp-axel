@@ -12,3 +12,4 @@ plugins {
 
 rootProject.name = "Projet_ERP"
 include("app")
+

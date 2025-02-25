@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name":"App",
+            "request": "launch",
+            "mainClass": "cc.lery.App",
+            "projectName": "app",
+        },
+        {
+            "type": "java",
+            "name":"AppScene",
+            "request": "launch",
+            "mainClass": "cc.lery.AppScene",
+            "projectName": "app",
+            "vmArgs": [
+                "--module-path","${workspaceFolder}/app/build/javafx",
+                "--add-modules","javafx.controls,javafx.fxml,javafx.graphics"
+            ]
+        }
+    ]
+}
