@@ -42,7 +42,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "cc.lery.App"
+    mainClass = "cc.lery.AppScene"
 }
 
 tasks.register<Copy>("copyJavaFXModules") {
