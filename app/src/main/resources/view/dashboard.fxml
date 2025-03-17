@@ -39,17 +39,22 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" 
+          fx:controller="cc.lery.controller.DashController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" onAction= "#handleOpenFile"/>
+            <MenuItem mnemonicParsing="false" text="Open…" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
@@ -90,12 +95,41 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <AnchorPane layoutX="83.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0">
-              <children>
-                  <Button layoutX="129.0" layoutY="160.0" mnemonicParsing="false" prefWidth="57.0" text="Button" onAction="#handleButtonClick" />
-                  <Button layoutX="129.0" layoutY="190.0" mnemonicParsing="false" prefWidth="57.0" text="Dacshboard" onAction="#handleDashboard" />
-              </children>
-            </AnchorPane>
+            <AnchorPane layoutX="4.0" prefHeight="9.0" prefWidth="579.0" />
+            <Pane layoutX="32.0" layoutY="80.0" prefHeight="243.0" prefWidth="278.0">
+                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#abd6ff" height="243.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
+                  <Text layoutX="118.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Labo">
+                      <font>
+                        <Font size="20.0" />
+                      </font>
+                  </Text>
+                </children>
+            </Pane>
+            <Pane layoutX="337.0" layoutY="80.0" prefHeight="243.0" prefWidth="278.0">
+                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bdfff6" height="243.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
+                  <Text layoutX="86.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prelevement">
+                      <font>
+                        <Font size="20.0" />
+                      </font>
+                  </Text>
+                </children>
+            </Pane>
+            <Text layoutX="217.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+                <font>
+                  <Font size="40.0" />
+                </font>
+            </Text>
+            <HBox layoutX="14.0" layoutY="10.0" prefHeight="47.0" prefWidth="200.0">
+                <children>
+                  <Button mnemonicParsing="false" prefWidth="57.0" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" text="Button" />
+                </children>
+            </HBox>
+            <Button layoutX="572.0" layoutY="333.0" mnemonicParsing="false" text="Retour" onAction="#BackToLogin"/>
       </children>
     </AnchorPane>
   </children>
