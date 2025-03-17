@@ -1,21 +1,26 @@
 package cc.lery.controller;
 
 import java.io.File;
+import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-
 import javafx.stage.Stage;
 
 public class MainController {
     @FXML
-    private TextField filelName;
+    private TextField fieldlName;
 
     @FXML
-    private Text reapraName;
+    private Text repeatName;
 
     @FXML
     private void handleButtonClick(){
@@ -45,4 +50,32 @@ public class MainController {
             System.out.println("Aucun ficher sélectionné");
         }
     }
+
+    @FXML
+    public void handleDashboard(ActionEvent event)
+    {
+        try {
+            //charger le fichier FXML de la deuxième page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+            Parent root = loader.load();
+
+            //Créer une nouvelle scène avec le contenu de la deuxième page
+            Scene scene = new Scene(root);
+
+            //Obtenir la scène actuelle à partir de l'événement
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            //En decomposant le code ci-dessus on pourrait écrire :
+            //Node node = (Node) event.getSource();
+            //Scene scene = node.getScene();
+            //Stage stage = (Stage) scene.getWindow();
+
+            //Définir la nouvelle scène sur le stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 }
