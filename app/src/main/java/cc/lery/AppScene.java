@@ -74,10 +74,17 @@ public class AppScene extends Application {
         }
 
         //Ajouter un User
-        userService.addUser("Thomas");
+        //userService.addUser("Thomas");
 
         //Suprimer un User
         //userService.deleteUser(5);
+
+        //modifier un User
+        //userService.updateUser(6,"Antoine");
+
+        //sortir un User
+        //System.out.println (userService.getUser(3).getLastname());
+        
         launch(args);
     }
 }
