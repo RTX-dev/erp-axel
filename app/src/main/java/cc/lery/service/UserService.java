@@ -16,8 +16,8 @@ public class UserService {
     }
 
     // Méthode pour ajouter un nouvel utilisateur
-    public void addUser(String name) {
-        User newUser = new User(0, name); // L'ID sera généré par la base de données
+    public void addUser(String name,String firstname, String mail, String phonenumber, String password) {
+        User newUser = new User(0, name, firstname, mail, phonenumber, password ); // L'ID sera généré par la base de données
         try {
             userDAO.createUser(newUser);
             System.out.println("Utilisateur ajouté avec succès !");
@@ -27,9 +27,19 @@ public class UserService {
     }
 
     // Méthode pour récupérer un utilisateur par son ID
-    public User getUser(int id) {
+    public User getUserById(int id) {
         try {
             return userDAO.getUserById(id);
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération de l'utilisateur : " + e.getMessage());
+            return null;
+        }
+    }
+
+    // Méthode pour récupérer un utilisateur par son Mail
+    public User getUserByMail(String mail) {
+        try {
+            return userDAO.getUserByMail(mail);
         } catch (SQLException e) {
             System.err.println("Erreur lors de la récupération de l'utilisateur : " + e.getMessage());
             return null;
@@ -71,4 +81,6 @@ public class UserService {
             System.err.println("Erreur lors de la suppression de l'utilisateur : " + e.getMessage());
         }
     }
+
+    
 }

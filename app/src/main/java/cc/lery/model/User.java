@@ -1,35 +1,60 @@
 package cc.lery.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.mindrot.jbcrypt.BCrypt;
 
-
-@Entity
-@Table(name = "User")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    @Column(name = "lastname")// Inutile ici car le nom de la colonne (lastname) est identique au nom de la variable (lastname)
+    private Integer id;
     private String lastname;
+    private String firstname;
+    private String mail;
+    private String phoneNumber;
+    private String password;
 
     // Constructeur par défaut
     public User() {
     }
 
     // Constructeur avec paramètres
-    public User(int id ,String nom) {
+    public User(int id ,String nom, String prenom,String mail, String telephone, String mdp) {
         this.id = id;
         this.lastname = nom;
+        this.firstname = prenom;
+        this.mail = mail;
+        this.phoneNumber = telephone;
+        this.password = mdp;
     }
 
+    public User(int id ,String nom, String prenom,String mail, String telephone) {
+        this(id, nom, prenom, mail, telephone,null);
+    }
+
+    
     // Getters et Setters
-    // On doit définir les getters et setters de tous les champs 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -44,5 +69,26 @@ public class User {
 
     public void setLastname(String name) {
         this.lastname = name;
+    }
+    
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String hashpassword(String password){
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
+        return hashed;
+    }
+
+    public Boolean checkpassword (String plainPassword,String hashPassword){
+        /*if (BCrypt.checkpw(plainPassword, hashPassword))
+	        System.out.println("It matches");
+        else
+	        System.out.println("It does not match");*/
+        return BCrypt.checkpw(plainPassword, hashPassword);
     }
 }
