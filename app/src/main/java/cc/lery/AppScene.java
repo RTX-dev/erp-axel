@@ -1,10 +1,5 @@
 package cc.lery;
 
-    
-
-
-import java.util.List;
-
 import cc.lery.model.User;
 import cc.lery.service.UserService;
 import javafx.application.Application;
@@ -16,10 +11,10 @@ import javafx.stage.Stage;
 public class AppScene extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/view/home_page.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/page-connexion.fxml"));
         primaryStage.setTitle("ERP HP/AP");
-        primaryStage.setScene(new Scene(root,1250, 500));
+        primaryStage.setScene(new Scene(root, 640, 400));
         primaryStage.show();
     }
 
@@ -65,26 +60,40 @@ public class AppScene extends Application {
             }
         }*/
 
-    // appelle de DB en utilisant les UserService
+        // appelle de DB en utilisant les UserService
         UserService userService = new UserService();
 
-        List<User> listUser = userService.listAllUsers();
+        //Sortir tout les user
+        /*List<User> listUser = userService.listAllUsers();
         for (int i = 0; i < listUser.size(); i++) {
             System.out.println("avec userService "+ listUser.get(i).getLastname() +" " + listUser.get(i).getId());
-        }
-
+        }*/
+        //sortir un User
+        //System.out.println (userService.getUserId(3).getLastname());
         //Ajouter un User
-        //userService.addUser("Thomas");
-
+        //userService.addUser("Turière","Thomas","thoma@gmail.com","+33 1 23 45 67 89", "gngngng");
         //Suprimer un User
         //userService.deleteUser(5);
-
         //modifier un User
         //userService.updateUser(6,"Antoine");
+        //verifier l'utilidateur
+        String mail = "thoma@gmail.com";
+        String plainpassword = "gngngng";
+        User user = userService.getUserByMail(mail);
+        if (user == null) {
+            //Message d'erreur
+            System.out.println("Le mot de passse ou le mail est incorrect");
+        } else {
+            Boolean result = user.checkpassword(plainpassword, user.getPassword());
+            if (result == true) {
+                //affichage page Dashboard
+                System.out.println("Autentification reussi");
+            } else {
+                //Message d'erreur
+                System.out.println("Le mot de passse ou le mail est incorrect");
+            }
+        }
 
-        //sortir un User
-        //System.out.println (userService.getUser(3).getLastname());
-        
         launch(args);
     }
 }

@@ -1,136 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" 
-          fx:controller="cc.lery.controller.DashController">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <AnchorPane layoutX="4.0" prefHeight="9.0" prefWidth="579.0" />
-            <Pane layoutX="32.0" layoutY="80.0" prefHeight="243.0" prefWidth="278.0">
-                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#abd6ff" height="243.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
-                  <Text layoutX="118.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Labo">
-                      <font>
-                        <Font size="20.0" />
-                      </font>
-                  </Text>
-                </children>
-            </Pane>
-            <Pane layoutX="337.0" layoutY="80.0" prefHeight="243.0" prefWidth="278.0">
-                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bdfff6" height="243.0" stroke="BLACK" strokeType="INSIDE" width="278.0" />
-                  <Text layoutX="86.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prelevement">
-                      <font>
-                        <Font size="20.0" />
-                      </font>
-                  </Text>
-                </children>
-            </Pane>
-            <Text layoutX="217.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
-                <font>
-                  <Font size="40.0" />
-                </font>
-            </Text>
-            <HBox layoutX="14.0" layoutY="10.0" prefHeight="47.0" prefWidth="200.0">
-                <children>
-                  <Button mnemonicParsing="false" prefWidth="57.0" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                </children>
-            </HBox>
-            <Button layoutX="572.0" layoutY="333.0" mnemonicParsing="false" text="Retour" onAction="#BackToLogin"/>
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="657.0" style="-fx-background-color: #3F403F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fill="#8ae883" layoutX="53.0" layoutY="178.0" radius="28.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="125.0" layoutY="230.0" radius="35.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="54.0" layoutY="316.0" radius="47.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="102.0" layoutY="98.0" radius="23.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="583.0" layoutY="250.0" radius="28.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="515.0" layoutY="193.0" radius="35.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="588.0" layoutY="114.0" radius="47.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Circle fill="#8ae883" layoutX="550.0" layoutY="321.0" radius="23.0" stroke="#8ae883" strokeType="INSIDE" />
+      <Arc fill="#8ae883" layoutX="143.0" layoutY="400.0" length="180.0" radiusX="65.0" radiusY="58.0" stroke="#8ae883" />
+      <Arc fill="#8ae883" layoutX="498.0" layoutY="34.0" length="180.0" radiusX="65.0" radiusY="58.0" startAngle="180.0" stroke="#8ae883" />
+      
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353635" height="35.0" layoutX="-1.0" layoutY="-1.0" stroke="#353635" strokeType="INSIDE" width="659.0" />
+      <Button layoutX="612.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="28.0" layoutY="135.0" prefHeight="246.0" prefWidth="276.0">
+         <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#353635" height="255.0" layoutX="-2.0" layoutY="-3.0" stroke="#353635" strokeType="INSIDE" width="279.0" />
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="206.0" layoutX="7.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" width="261.0" />
+            <ScrollPane layoutX="15.0" layoutY="56.0" prefHeight="179.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button layoutX="70.0" layoutY="-3.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Laboratoire" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="227.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="357.0" layoutY="135.0" prefHeight="250.0" prefWidth="274.0">
+         <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#353635" height="253.0" layoutX="-1.0" layoutY="-2.0" stroke="#353635" strokeType="INSIDE" width="277.0" />
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="206.0" layoutX="8.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" width="261.0" />
+            <ScrollPane layoutX="16.0" layoutY="56.0" prefHeight="179.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+            <Button layoutX="66.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Prélèvement" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="228.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Text fill="#8ae883" layoutX="257.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+         <font>
+            <Font name="Arial" size="28.0" />
+         </font>
+      </Text>
+      <Text fill="#8ae883" layoutX="290.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITAL">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

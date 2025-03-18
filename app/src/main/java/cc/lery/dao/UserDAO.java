@@ -24,12 +24,34 @@ public class UserDAO {
     }
 
     public User getUserById(int id) throws SQLException {
-        String sql = "SELECT lastname, id FROM " + tablename + " WHERE id = ? ";
+        String sql = "SELECT * FROM " + tablename + " WHERE id = ? ";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("id"), rs.getString("lastname"));
+                User user = new User(rs.getInt("id"), 
+                                        rs.getString("lastname"),
+                                        rs.getString("firstname"),
+                                        rs.getString("mail"),
+                                        rs.getString("phoneNumber"));
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUserByMail(String mail) throws SQLException {
+        String sql = "SELECT * FROM " + tablename + " WHERE mail = ? ";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, mail);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("id"), 
+                                        rs.getString("lastname"),
+                                        rs.getString("firstname"),
+                                        rs.getString("mail"),
+                                        rs.getString("phoneNumber"),
+                                        rs.getString("password"));
                 return user;
             }
         }
@@ -38,11 +60,15 @@ public class UserDAO {
 
     public List<User> getAllUsers() throws SQLException {
         List<User> userList = new ArrayList<>();
-        String sql = "SELECT id, lastname FROM users";
+        String sql = "SELECT * FROM "+ tablename;
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("id"), rs.getString("lastname"));
+                User user = new User(rs.getInt("id"), 
+                                        rs.getString("lastname"),
+                                        rs.getString("firstname"),
+                                        rs.getString("mail"),
+                                        rs.getString("phoneNumber"));
                 userList.add(user);
             }
         }
@@ -51,16 +77,21 @@ public class UserDAO {
 
     // Méthode pour créer un nouvel utilisateur
     public void createUser(User user) throws SQLException {
-        String sql = "INSERT INTO users (lastname) VALUES (?)";
+        String sql = "INSERT INTO " + tablename + " (lastname, firstname, mail, phoneNumber, password) VALUES (?,?,?,?,?)";
         try (Connection conn = getConnection(); // PrepareStatement fait une requête préparée
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+            String hashedpassword = user.hashpassword(user.getPassword());
             stmt.setString(1, user.getLastname());
+            stmt.setString(2, user.getFirstname());
+            stmt.setString(3, user.getMail());
+            stmt.setString(4, user.getPhoneNumber());
+            stmt.setString(5, hashedpassword);
             stmt.executeUpdate();
         }
     }
 
     public void updateUser(int id, String newName) throws SQLException {
-        String sql = "UPDATE users SET lastname = ? WHERE id = ?";
+        String sql = "UPDATE "+ tablename +" SET lastname = ? WHERE id = ?";
         try (Connection conn = getConnection(); // PrepareStatement fait une requête préparée
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newName);
@@ -71,7 +102,7 @@ public class UserDAO {
 
     // Méthode pour supprimer un utilisateur
     public void deleteUser(int id) throws SQLException{
-        String sql = "DELETE FROM users WHERE id = ?";
+        String sql = "DELETE FROM "+ tablename +" WHERE id = ?";
         try (Connection conn = getConnection(); // PrepareStatement fait une requête préparée
                 PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1,id);

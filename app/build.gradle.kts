@@ -17,15 +17,14 @@ repositories {
 }
 
 dependencies {
+
     implementation("org.openjfx:javafx-controls:21.0.2")
     implementation("org.openjfx:javafx-fxml:21.0.2")
     implementation("org.openjfx:javafx-graphics:21.0.2")
 
     implementation("org.mariadb.jdbc:mariadb-java-client:3.5.2")
 
-    implementation("org.hibernate:hibernate-core:6.4.10.Final")
-
-    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    implementation("org.mindrot:jbcrypt:0.4")
     
     // Dépendance JPA
 
