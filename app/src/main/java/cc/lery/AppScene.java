@@ -1,6 +1,5 @@
 package cc.lery;
 
-import cc.lery.model.User;
 import cc.lery.service.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -70,29 +69,18 @@ public class AppScene extends Application {
         }*/
         //sortir un User
         //System.out.println (userService.getUserId(3).getLastname());
+
         //Ajouter un User
         //userService.addUser("Turière","Thomas","thoma@gmail.com","+33 1 23 45 67 89", "gngngng");
+
         //Suprimer un User
         //userService.deleteUser(5);
+
         //modifier un User
         //userService.updateUser(6,"Antoine");
+        
         //verifier l'utilidateur
-        String mail = "thoma@gmail.com";
-        String plainpassword = "gngngng";
-        User user = userService.getUserByMail(mail);
-        if (user == null) {
-            //Message d'erreur
-            System.out.println("Le mot de passse ou le mail est incorrect");
-        } else {
-            Boolean result = user.checkpassword(plainpassword, user.getPassword());
-            if (result == true) {
-                //affichage page Dashboard
-                System.out.println("Autentification reussi");
-            } else {
-                //Message d'erreur
-                System.out.println("Le mot de passse ou le mail est incorrect");
-            }
-        }
+        
 
         launch(args);
     }
