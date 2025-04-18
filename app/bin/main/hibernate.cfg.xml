@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/erp_projet</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+        <!-- En développement, utiliser update. En production utiliser validate -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Affiche la requête sql dans la console. Utile lors du développement -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- Formate la requête SQL à l'écran pour une lecture plus facile-->
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Mapping des entités -->
+        <mapping class="cc.lery.model.User"/>
+    </session-factory>
+</hibernate-configuration>

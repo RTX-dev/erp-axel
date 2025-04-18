@@ -25,10 +25,9 @@
       <Circle fill="#8ae883" layoutX="1069.0" layoutY="319.0" radius="23.0" stroke="#8ae883" strokeType="INSIDE" />
       <Arc fill="#8ae883" layoutX="184.0" layoutY="661.0" length="180.0" radiusX="65.0" radiusY="58.0" stroke="#8ae883" />
       <Arc fill="#8ae883" layoutX="1011.0" layoutY="31.0" length="180.0" radiusX="65.0" radiusY="58.0" startAngle="180.0" stroke="#8ae883" />
-      
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#353635" height="35.0" layoutX="-1.0" layoutY="-1.0" stroke="#353635" strokeType="INSIDE" width="1210.0" />
       <Button layoutX="612.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
-      <Pane layoutX="222.0" layoutY="153.0" prefHeight="435.0" prefWidth="360.0">
+      <Pane layoutX="141.0" layoutY="153.0" prefHeight="435.0" prefWidth="360.0">
          <children>
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#353635" height="441.0" layoutX="-5.0" layoutY="-4.0" stroke="#353635" strokeType="INSIDE" width="366.0" />
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="390.0" layoutX="10.0" layoutY="34.0" stroke="WHITE" strokeType="INSIDE" width="340.0" />
@@ -68,40 +67,79 @@
       </Text>
       <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="1170.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@image/download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png"/>
+            <Image url="@image/download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png" />
          </image>
       </ImageView>
-      <Pane layoutX="622.0" layoutY="151.0" prefHeight="435.0" prefWidth="360.0">
+      <Pane layoutX="542.0" layoutY="151.0" prefHeight="435.0" prefWidth="574.0">
          <children>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#353635" height="441.0" layoutX="-5.0" layoutY="-4.0" stroke="#353635" strokeType="INSIDE" width="366.0" />
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="390.0" layoutX="7.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" width="340.0" />
-            <Button layoutX="115.0" layoutY="-3.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Prélèvement" textFill="WHITE">
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#353635" height="441.0" layoutX="-5.0" layoutY="-4.0" stroke="#353635" strokeType="INSIDE" width="574.0" />
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="390.0" layoutX="7.0" layoutY="35.0" stroke="WHITE" strokeType="INSIDE" width="554.0" />
+            <Button layoutX="167.0" layoutY="-5.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Information Laboratoire" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="305.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <ListView layoutX="17.0" layoutY="72.0" prefHeight="346.0" prefWidth="322.0" />
-            <Line endX="221.0" layoutX="118.0" layoutY="72.0" startX="-100.0" />
-            <Text layoutX="34.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom patient" wrappingWidth="83.0">
+            <Text layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="40.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="128.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date du prélèvement" wrappingWidth="129.181640625">
+            <Text layoutX="316.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type d'analyse :" wrappingWidth="109.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="276.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="40.0">
+            <Text layoutX="54.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIRET :" wrappingWidth="45.99999999999994">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
+            <Text layoutX="319.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville :" wrappingWidth="40.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="54.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN :" wrappingWidth="40.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="54.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIC :" wrappingWidth="32.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="55.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adersse mail :" wrappingWidth="87.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="314.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code Postal :" wrappingWidth="87.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="316.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :" wrappingWidth="55.99999999999994">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="316.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Téléphone :" wrappingWidth="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="55.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="55.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="55.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="55.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="55.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="316.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="316.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="316.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="316.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Text layoutX="316.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="170.21630859375" />
+            <Button layoutX="467.0" layoutY="3.0" mnemonicParsing="false" style="-fx-background-color: #3F403F; -fx-border-color: 000000;" text="Modifier" textFill="WHITE" />
          </children>
       </Pane>
    </children>
