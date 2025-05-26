@@ -1,8 +1,7 @@
 package cc.lery.controller;
 
-import java.io.IOException;
 
-import cc.lery.model.User;
+
 import cc.lery.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,12 +19,9 @@ public class MainController {
     @FXML
     private TextField loginfield;
     @FXML
-    private TextField passwordfield;
+    private PasswordField passwordfield;
     @FXML
-    private Text texterror;
-
-    @FXML
-    private Text repeatName;
+    private Text errormsg;
 
 
     /*@FXML
@@ -47,7 +44,35 @@ public class MainController {
         }
     }*/
     @FXML
-    public void handleConnectionButun(ActionEvent event) {
+    private void handleConnectionButun(ActionEvent event){
+        String email = loginfield.getText();
+        String password = passwordfield.getText();
+        UserService userService = new UserService();
+        if(userService.validateUser(email, password)){
+            //cherger le dashboard
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+                    try{ Parent root = loader.load();
+
+                    //Créer une nouvelle scène avec le contenu de la deuxième page
+                    Scene scene = new Scene(root);
+
+                    //Obtenir la scène actuelle à partir de l'événement
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    //Définir la nouvelle scène sur le stage
+                    stage.setScene(scene);
+                    stage.show();
+                    }catch (Exception e){
+                        System.out.println("Erreur de chargement"+e.getMessage());
+                    }
+
+        }else{
+            //Message d'erreur
+            errormsg.setText("Le mot de passse ou le mail est incorrect");
+            
+        }
+    }
+    /*public void handleConnectionButun(ActionEvent event) {
         UserService userService = new UserService();
         try {
             String mail = loginfield.getText();
@@ -86,7 +111,7 @@ public class MainController {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     /*@FXML
     public void handleDashboard(ActionEvent event) {

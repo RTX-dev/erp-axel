@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -61,16 +62,16 @@
                   <Font name="Arial" size="28.0" />
                 </font>
             </Text>
+            <Text fill="WHITE" layoutX="243.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail" />
             <TextField fx:id="loginfield" layoutX="241.0" layoutY="155.0" />
-            <TextField fx:id="passwordfield" layoutX="242.0" layoutY="214.0" />
+            <Text fill="WHITE" layoutX="243.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
+            <PasswordField fx:id="passwordfield" layoutX="241.0" layoutY="215.0" />
             <Button layoutX="275.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleConnectionButun" style="-fx-background-color: #353635;" text="Se connecter" textFill="WHITE">
                 <font>
-                  <Font fx:id = "errortext" name="Arial" size="13.0" />
+                  <Font fx:id="errortext" name="Arial" size="13.0" />
                 </font>
             </Button>
-            <Text fill="WHITE" layoutX="243.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail" />
-            <Text fill="WHITE" layoutX="243.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
-            <Text layoutX="213.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.0" />
+            <Text fx:id="errormsg" fill="rgb(200, 0, 0)" layoutX="213.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.0" />
           </children>
     </AnchorPane>
   </children>
