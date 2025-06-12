@@ -72,48 +72,9 @@ public class MainController {
             
         }
     }
-    /*public void handleConnectionButun(ActionEvent event) {
-        UserService userService = new UserService();
-        try {
-            String mail = loginfield.getText();
-            String plainpassword = passwordfield.getText();
-            //String texTerror = texterror.setText(0);
-            User user = userService.getUserByMail(mail);
-            if (user == null) {
-                //Message d'erreur
-                System.out.println("Le mot de passse ou le mail est incorrect");
-            } else {
-                Boolean result = user.checkpassword(plainpassword, user.getPassword());
-                if (result == true) {
-                    //affichage page Dashboard
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
-                    Parent root = loader.load();
+    
 
-                    //Créer une nouvelle scène avec le contenu de la deuxième page
-                    Scene scene = new Scene(root);
-
-                    //Obtenir la scène actuelle à partir de l'événement
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    //En decomposant le code ci-dessus on pourrait écrire :
-                    //Node node = (Node) event.getSource();
-                    //Scene scene = node.getScene();
-                    //Stage stage = (Stage) scene.getWindow();
-
-                    //Définir la nouvelle scène sur le stage
-                    stage.setScene(scene);
-                    stage.show();
-                } else {
-                    //Message d'erreur
-                    System.out.println("Le mot de passse ou le mail est incorrect");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-    /*@FXML
+    @FXML
     public void handleDashboard(ActionEvent event) {
         try {
             //affichage page Dashboard
@@ -134,9 +95,9 @@ public class MainController {
             stage.setScene(scene);
             stage.show();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }*/
+    }
 }

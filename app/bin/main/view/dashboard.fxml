@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1210.0" style="-fx-background-color: #3F403F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.DashController">
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1210.0" style="-fx-background-color: #3F403F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.DashController">
    <children>
       <Circle fill="#8ae883" layoutX="94.0" layoutY="443.0" radius="28.0" stroke="#8ae883" strokeType="INSIDE" />
       <Circle fill="#8ae883" layoutX="166.0" layoutY="491.0" radius="35.0" stroke="#8ae883" strokeType="INSIDE" />
@@ -37,23 +37,18 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="305.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
+            <Button layoutX="305.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddUser" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="+" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <ListView layoutX="19.0" layoutY="72.0" prefHeight="346.0" prefWidth="322.0" />
-            <Line endX="221.0" layoutX="120.0" layoutY="72.0" startX="-100.0" />
-            <Text layoutX="80.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="32.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="197.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type d'analyse" wrappingWidth="94.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
+            <TableView fx:id="userTable" layoutX="20.0" layoutY="43.0" prefHeight="375.0" prefWidth="322.0">
+               <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="156.37472534179688" text="ID" />
+                  <TableColumn fx:id="lastnameColumn" prefWidth="165.12527465820312" text="Nom" />
+               </columns>
+            </TableView>
+            
          </children>
       </Pane>
       <Text fill="#8ae883" layoutX="536.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
@@ -66,9 +61,9 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <ImageView onMouseClicked="#BackToLogin" fitHeight="31.0" fitWidth="26.0" layoutX="1170.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="1170.0" layoutY="4.0" onMouseClicked="#BackToLogin" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@image/download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png"/>
+            <Image url="@image/download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png" />
          </image>
       </ImageView>
       <Pane layoutX="622.0" layoutY="151.0" prefHeight="435.0" prefWidth="360.0">
@@ -85,23 +80,12 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <ListView layoutX="17.0" layoutY="72.0" prefHeight="346.0" prefWidth="322.0" />
-            <Line endX="221.0" layoutX="118.0" layoutY="72.0" startX="-100.0" />
-            <Text layoutX="34.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom patient" wrappingWidth="83.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="128.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date du prélèvement" wrappingWidth="129.181640625">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Text layoutX="276.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="40.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
+            <TableView layoutX="16.0" layoutY="46.0" prefHeight="372.0" prefWidth="322.0">
+               <columns>
+                  <TableColumn prefWidth="103.0" text="C1" />
+                  <TableColumn prefWidth="142.0" text="C2" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
    </children>

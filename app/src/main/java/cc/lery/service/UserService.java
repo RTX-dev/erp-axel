@@ -91,7 +91,7 @@ public class UserService {
             } else if (user.checkpassword(password, user.getPassword())) {
                 return true;
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
