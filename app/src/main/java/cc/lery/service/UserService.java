@@ -16,8 +16,8 @@ public class UserService {
     }
 
     // Méthode pour ajouter un nouvel utilisateur
-    public void addUser(String name, String firstname, String mail, String phonenumber, String password) {
-        User newUser = new User(0, name, firstname, mail, phonenumber, password); // L'ID sera généré par la base de données
+    public void addUser(String lastname, String firstname, String mail, String phonenumber, String password) {
+        User newUser = new User(0, lastname, firstname, mail, phonenumber, password); // L'ID sera généré par la base de données
         try {
             userDAO.createUser(newUser);
             System.out.println("Utilisateur ajouté avec succès !");
@@ -57,12 +57,16 @@ public class UserService {
     }
 
     // Méthode pour mettre à jour un utilisateur
-    public void updateUser(int id, String newName) {
+    public void updateUser(int id, String newLastName, String newFirstName , String mail , String Tel , String password) {
         try {
             User user = userDAO.getUserById(id);
             if (user != null) {
-                user.setLastname(newName);
-                userDAO.updateUser(id, newName);
+                // Hacher le mot de passe avant de le sauvegarder
+                String hashedPassword = user.hashpassword(password);
+                
+                // Appeler la méthode DAO pour sauvegarder en base de données
+                userDAO.updateUser(id, newLastName, newFirstName, mail, Tel, hashedPassword);
+                
                 System.out.println("Utilisateur mis à jour avec succès !");
             } else {
                 System.out.println("Utilisateur non trouvé.");

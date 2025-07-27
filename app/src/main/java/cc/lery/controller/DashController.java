@@ -2,6 +2,7 @@ package cc.lery.controller;
 
 import java.io.IOException;
 import java.util.List;
+
 import cc.lery.model.User;
 import cc.lery.service.UserService;
 import javafx.collections.FXCollections;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -68,29 +70,62 @@ public class DashController {
     }
 
     @FXML
-    // Méthode pour ouvrir la modale
     private void AddUser(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/addUserPage.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Nouvelle utilisateur");
-            stage.initModality(Modality.APPLICATION_MODAL); // Modale
-            stage.setScene(new Scene(root));
-            stage.showAndWait(); // Attend que la modale soit fermée
-            loadUsers();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/addUserPage.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Récupère le contrôleur
+        AddUserController controller = fxmlLoader.getController();
+        controller.setUserToEdit(null); // Mode ajout
+
+        Stage stage = new Stage();
+        stage.setTitle("Nouvel utilisateur");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+        loadUsers(); // Recharge la liste
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    @FXML
+private void EditUser(ActionEvent event) {
+    User selectedUser = userTable.getSelectionModel().getSelectedItem(); // Remplace "userTable" par ton vrai ID
+
+    if (selectedUser == null) {
+        // Affiche une alerte
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Aucun utilisateur sélectionné");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez sélectionner un utilisateur à modifier.");
+        alert.showAndWait();
+        return;
     }
 
-    /*@FXML
-    private void EditUser(ActionEvent event){
-        try {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/addUserPage.fxml"));
+        Parent root = fxmlLoader.load();
 
-        }
-    }*/
+        AddUserController controller = fxmlLoader.getController();
+        controller.setUserToEdit(selectedUser); // Mode édition
+
+        Stage stage = new Stage();
+        stage.setTitle("Modifier utilisateur");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+        loadUsers();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
 
     public void loadUsers(){
         UserService  userDAO = new UserService();
