@@ -61,7 +61,7 @@
             <Font name="Arial" size="28.0" />
          </font>
       </Text>
-      <Text fill="#8ae883" layoutX="569.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITAL">
+      <Text fill="#8ae883" layoutX="569.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
          <font>
             <Font size="23.0" />
          </font>
