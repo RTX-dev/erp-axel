@@ -90,12 +90,16 @@ public class UserDAO {
         }
     }
 
-    public void updateUser(int id, String newName) throws SQLException {
-        String sql = "UPDATE "+ tablename +" SET lastname = ? WHERE id = ?";
+    public void updateUser(int id, String lastname, String firstname, String mail, String phoneNumber, String password) throws SQLException {
+        String sql = "UPDATE "+ tablename +" SET lastname = ?, firstname = ?, mail = ?, phoneNumber = ?, password = ? WHERE id = ?";
         try (Connection conn = getConnection(); // PrepareStatement fait une requête préparée
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, newName);
-            stmt.setInt(2, id);
+            stmt.setString(1, lastname);
+            stmt.setString(2, firstname);
+            stmt.setString(3, mail);
+            stmt.setString(4, phoneNumber);
+            stmt.setString(5, password);
+            stmt.setInt(6, id);
             stmt.executeUpdate();
         }
     }

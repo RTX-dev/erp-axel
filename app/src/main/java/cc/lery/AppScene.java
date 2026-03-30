@@ -1,6 +1,5 @@
 package cc.lery;
 
-import cc.lery.service.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -60,7 +59,7 @@ public class AppScene extends Application {
         }*/
 
         // appelle de DB en utilisant les UserService
-        UserService userService = new UserService();
+        //UserService userService = new UserService();
 
         //Sortir tout les user
         /*List<User> listUser = userService.listAllUsers();
