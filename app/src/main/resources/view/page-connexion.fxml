@@ -1,80 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Arc?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.MainController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #3F403F;" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2D2E2D;" VBox.vgrow="ALWAYS">
           <children>
-            <Circle fill="#8ae883" layoutX="76.0" layoutY="179.0" radius="28.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="148.0" layoutY="231.0" radius="35.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="77.0" layoutY="317.0" radius="47.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="125.0" layoutY="99.0" radius="23.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="572.0" layoutY="216.0" radius="28.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="504.0" layoutY="159.0" radius="35.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="577.0" layoutY="80.0" radius="47.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Circle fill="#8ae883" layoutX="539.0" layoutY="287.0" radius="23.0" stroke="#8ae883" strokeType="INSIDE" />
-            <Arc fill="#8ae883" layoutX="166.0" layoutY="401.0" length="180.0" radiusX="65.0" radiusY="58.0" stroke="#8ae883" />
-            <Arc fill="#8ae883" layoutX="487.0" length="180.0" radiusX="65.0" radiusY="58.0" startAngle="180.0" stroke="#8ae883" />
+            <!-- Décoration Moderne : Lignes de données en arrière-plan -->
+            <Line endX="640.0" layoutY="100.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.2" />
+            <Line endX="640.0" layoutY="200.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
+            <Line endX="640.0" layoutY="300.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.15" />
 
-            <Text fill="#8be583" layoutX="271.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITAL">
+            <Line startY="400.0" layoutX="150.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
+            <Line startY="400.0" layoutX="320.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.2" />
+            <Line startY="400.0" layoutX="490.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
+
+            <!-- Petit carré décoratif en haut à gauche -->
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ae883" height="40.0" layoutX="-20.0" layoutY="-20.0" rotate="45.0" stroke="#8ae883" strokeType="INSIDE" width="40.0" opacity="0.5" />
+
+            <!-- Carré central de connexion avec effet "Glace" -->
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#353635" height="300.0" layoutX="185.0" layoutY="50.0" stroke="#8ae883" strokeType="INSIDE" strokeWidth="1.5" width="270.0" />
+
+            <Text fill="#8ae883" layoutX="255.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
                 <font>
-                  <Font name="Arial" size="28.0" />
+                  <Font name="Arial Bold" size="45.0" />
                 </font>
             </Text>
-            <Text fill="WHITE" layoutX="243.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail" />
-            <TextField fx:id="loginfield" layoutX="241.0" layoutY="155.0" />
-            <Text fill="WHITE" layoutX="243.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
-            <PasswordField fx:id="passwordfield" layoutX="241.0" layoutY="215.0" />
-            <Button layoutX="275.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleConnectionButun" style="-fx-background-color: #353635;" text="Se connecter" textFill="WHITE">
+
+            <VBox layoutX="210.0" layoutY="130.0" spacing="20.0" alignment="CENTER">
+               <children>
+                  <VBox spacing="8.0">
+                     <children>
+                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail professionnel">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="loginfield" prefHeight="35.0" prefWidth="220.0" promptText="nom@hopital.com" style="-fx-background-color: #3F403F; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-color: #555555; -fx-border-radius: 5;" />
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="8.0">
+                     <children>
+                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Text>
+                        <PasswordField fx:id="passwordfield" prefHeight="35.0" prefWidth="220.0" promptText="••••••••" style="-fx-background-color: #3F403F; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-color: #555555; -fx-border-radius: 5;" />
+                     </children>
+                  </VBox>
+
+                  <Button mnemonicParsing="false" onAction="#handleConnectionButun" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #8ae883; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" text="CONNEXION" textFill="#2D2E2D">
+                      <font>
+                        <Font name="Arial" size="14.0" />
+                      </font>
+                  </Button>
+               </children>
+            </VBox>
+
+            <Text fx:id="errormsg" fill="#ff6b6b" layoutX="185.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="270.0">
+               <font>
+                  <Font name="Arial Italic" size="12.0" />
+               </font>
+            </Text>
+
+            <Button layoutX="520.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleDashboard" style="-fx-background-color: transparent; -fx-border-color: #555555; -fx-border-radius: 5;" text="ACCÈS DIRECT" textFill="#888888">
                 <font>
-                  <Font fx:id="errortext" name="Arial" size="13.0" />
-                </font>
-            </Button>
-            <Text fx:id="errormsg" fill="rgb(200, 0, 0)" layoutX="213.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.0" />
-            <Button layoutX="275.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleDashboard" style="-fx-background-color: #353635;" text="Skip" textFill="WHITE">
-                <font>
-                  <Font fx:id="errortext" name="Arial" size="13.0" />
+                  <Font name="Arial" size="10.0" />
                 </font>
             </Button>
           </children>

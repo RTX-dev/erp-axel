@@ -1,5 +1,8 @@
 package cc.lery;
 
+import cc.lery.model.User;
+import cc.lery.service.RoleService;
+import cc.lery.service.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,69 +20,39 @@ public class AppScene extends Application {
     }
 
     public static void main(String[] args) {
-        //URL de connexion à la base de données
-        /*String url = "jdbc:mariadb://localhost:3306/erp";
-        String user = "root";
-        String password ="";
-
-        Connection connexion = null;
-
-
+        
+        UserService userService = new UserService();
+        RoleService roleService = new RoleService();
 
         try {
-            //Etablir la connéxion
-            connexion = DriverManager.getConnection(url, user, password);
-            System.out.println("Connexion réussie à la base de donnée MariaDB!");
-
-            //Executer une requête
-            Statement statement = connexion.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT id, lastname FROM users");
-
-            //Traiter les résultats
-            while (resultSet.next()){
-                System.out.println("ID: " + resultSet.getInt("Id"));
-                System.out.println("Nom: " + resultSet.getString("Lastname"));
-            }
-
-            //Fermer les resources
-            resultSet.close();
-            statement.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally{
-            //fermer la connexion
-            if (connexion != null){
-                try {
-                    connexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            // --- GÉNÉRATION DES COMPTES DE TEST ---
+            
+            // 1. Création de l'administrateur
+            if (userService.getUserByMail("admin@erp.com") == null) {
+                System.out.println("Compte ADMIN manquant. Création...");
+                int adminId = userService.addUser("Admin", "Axel", "admin@erp.com", "0600000001", "admin123");
+                if (adminId != -1) {
+                    roleService.assignRoleToUser(adminId, 1L); // 1 = ADMIN
+                    System.out.println("Compte ADMIN créé avec succès (ID: " + adminId + ")");
                 }
+            } else {
+                System.out.println("Compte ADMIN déjà présent.");
             }
-        }*/
 
-        // appelle de DB en utilisant les UserService
-        //UserService userService = new UserService();
-
-        //Sortir tout les user
-        /*List<User> listUser = userService.listAllUsers();
-        for (int i = 0; i < listUser.size(); i++) {
-            System.out.println("avec userService "+ listUser.get(i).getLastname() +" " + listUser.get(i).getId());
-        }*/
-        //sortir un User
-        //System.out.println (userService.getUserId(3).getLastname());
-
-        //Ajouter un User
-        //userService.addUser("Turière","Thomas","thoma@gmail.com","+33 1 23 45 67 89", "gngngng");
-
-        //Suprimer un User
-        //userService.deleteUser(5);
-
-        //modifier un User
-        //userService.updateUser(6,"Antoine");
-        
-        //verifier l'utilidateur
-        
+            // 2. Création du médecin
+            if (userService.getUserByMail("doc@erp.com") == null) {
+                System.out.println("Compte MEDECIN manquant. Création...");
+                int docId = userService.addUser("Medecin", "Thomas", "doc@erp.com", "0600000002", "doc123");
+                if (docId != -1) {
+                    roleService.assignRoleToUser(docId, 2L); // 2 = MEDECIN
+                    System.out.println("Compte MEDECIN créé avec succès (ID: " + docId + ")");
+                }
+            } else {
+                System.out.println("Compte MEDECIN déjà présent.");
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'initialisation des données : " + e.getMessage());
+        }
 
         launch(args);
     }

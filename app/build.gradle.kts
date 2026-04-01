@@ -8,7 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id("org.openjfx.javafxplugin") version "0.0.13" // Ajout du plugin JavaFX
+    id("org.openjfx.javafxplugin") version "0.1.0" // Ajout du plugin JavaFX
+    id("org.beryx.runtime") version "1.13.0" // Ajout du plugin Runtime
 }
 
 repositories {
@@ -21,11 +22,12 @@ dependencies {
     implementation("org.openjfx:javafx-controls:21.0.2")
     implementation("org.openjfx:javafx-fxml:21.0.2")
     implementation("org.openjfx:javafx-graphics:21.0.2")
-
+    implementation("org.jdbi:jdbi3-core:3.41.1")
+    implementation("org.jdbi:jdbi3-sqlobject:3.41.1")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.5.2")
 
     implementation("org.mindrot:jbcrypt:0.4")
-    
+
     // Dépendance JPA
 
     // Framework de test
@@ -37,7 +39,7 @@ dependencies {
     implementation(libs.guava)
 }
 
-javafx{
+javafx {
     version = "21.0.2" // Version JavaFX
     modules = listOf("javafx.controls", "javafx.fxml", "javafx.graphics") // Modules à inclure
 }
@@ -48,10 +50,47 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+runtime {
+    options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
 
+    // On inclut les modules de base de la JRE nécessaires
+    modules.set(listOf("java.naming", "java.desktop", "java.sql", "jdk.unsupported", "java.scripting"))
+
+    jpackage {
+        imageName = "EPITO"
+        skipInstaller = false
+        installerName = "Pharmacie-Installer"
+
+        val os = org.gradle.internal.os.OperatingSystem.current()
+        if (os.isWindows) {
+            installerType = "exe"
+            installerOptions.addAll(listOf("--win-dir-chooser", "--win-shortcut"))
+        } else if (os.isLinux) {
+            installerType = "deb"
+            installerOptions.addAll(listOf("--linux-shortcut", "--linux-deb-maintainer", "votre@email.com"))
+        } else if (os.isMacOsX) {
+            // Configuration spécifique macOS
+            installerType = "dmg" // Génère un .dmg
+
+            // Options optionnelles pour le look & feel Mac
+            installerOptions.addAll(
+                listOf(
+                    "--mac-package-name", "EPITO",
+                    "--mac-package-identifier", "cc.lery.epito",
+                    "--description", "Logiciel de gestion de pharmacie",
+                    "--vendor", "Lery CC"
+                )
+            )
+
+            // Si tu as une icône .icns (recommandé pour Mac)
+            // icon = file("src/main/resources/icons/icon.icns")
+            // Pout une application macOS non signée, faire clic droit "Ouvrir" la première fois
+        }
+    }
+}
 application {
     // Define the main class for the application.
-    mainClass = "cc.lery.AppScene"
+    mainClass = "cc.lery.Launcher"
 }
 
 tasks.register<Copy>("copyJavaFXModules") {

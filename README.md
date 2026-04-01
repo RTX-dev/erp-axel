@@ -1,4 +1,4 @@
-# 🚀 Projet ERP - Evan & Axel
+# 🚀 Projet ERP - Axel
 
 Lien du dépôt : [https://gitlab.com/axellr/erp-axel.git](https://gitlab.com/axellr/erp-axel.git)
 
