@@ -10,13 +10,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
+import java.util.List;
 
+/**
+ * AddUserController : Gère la fenêtre d'ajout ou de modification d'un utilisateur.
+ */
 public class AddUserController {
+    
+    // Champs de texte du formulaire liés au fichier FXML
     @FXML
     private TextField firstnamefield;
     @FXML
@@ -27,65 +34,90 @@ public class AddUserController {
     private TextField phoneNumberfield;
     @FXML
     private TextField passwordfield;
+    
+    // La liste graphique pour sélectionner les rôles
     @FXML
-    private ComboBox<Role> roleComboBox;
+    private ListView<Role> roleListView;
+    
     @FXML
-    private Button actionButton;
+    private Button actionButton; // Bouton "Ajouter" ou "Modifier"
     @FXML
-    private Text titleText;
+    private Text titleText;      // Titre de la fenêtre
 
-    private User userToEdit;
+    private User userToEdit;     // Garde en mémoire si on est en train de modifier quelqu'un
     private UserService userService = new UserService();
     private RoleService roleService = new RoleService();
 
+    /**
+     * S'exécute à l'ouverture de la fenêtre.
+     */
     @FXML
     public void initialize() {
-        // Charger les rôles depuis la DB
+        // 1. Charger tous les rôles existants depuis la base de données
         ObservableList<Role> roles = FXCollections.observableArrayList(roleService.getAllRoles());
-        roleComboBox.setItems(roles);
+        roleListView.setItems(roles);
 
-        // Configurer l'affichage du nom du rôle dans la ComboBox
-        roleComboBox.setConverter(new StringConverter<Role>() {
-            @Override
-            public String toString(Role role) {
-                return role == null ? "" : role.getNameFunction();
-            }
+        // 2. Activer la sélection MULTIPLE (Maintenir CTRL ou SHIFT pour plusieurs)
+        roleListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        // 3. Configurer l'affichage : on veut voir le 'nameFunction' du rôle dans la liste
+        roleListView.setCellFactory(lv -> new ListCell<Role>() {
             @Override
-            public Role fromString(String string) {
-                return null;
+            protected void updateItem(Role role, boolean empty) {
+                super.updateItem(role, empty);
+                if (empty || role == null) {
+                    setText(null);
+                } else {
+                    setText(role.getNameFunction());
+                }
             }
         });
     }
 
+    /**
+     * Appelé quand on clique sur le bouton de validation (Ajouter/Modifier).
+     */
     @FXML
     private void handleAction(ActionEvent event) {
+        // On récupère les textes saisis
         String firstname = firstnamefield.getText();
         String lastname = lastnamefield.getText();
         String mail = mailfield.getText();
         String phoneNumber = phoneNumberfield.getText();
         String password = passwordfield.getText();
-        Role selectedRole = roleComboBox.getSelectionModel().getSelectedItem();
+        
+        // On récupère TOUS les rôles cochés dans la liste
+        List<Role> selectedRoles = roleListView.getSelectionModel().getSelectedItems();
 
         if (userToEdit == null) {
-            // AJOUT
+            // --- CAS AJOUT ---
             int newUserId = userService.addUser(lastname, firstname, mail, phoneNumber, password);
-            if (newUserId != -1 && selectedRole != null) {
-                // Assigner le rôle dans la table de jointure Assign
-                roleService.assignRoleToUser(newUserId, selectedRole.getIdRole());
+            
+            if (newUserId != -1 && !selectedRoles.isEmpty()) {
+                // Pour chaque rôle sélectionné, on crée un lien dans la table 'Assign'
+                for (Role role : selectedRoles) {
+                    roleService.assignRoleToUser(newUserId, role.getIdRole());
+                }
             }
         } else {
-            // MODIFICATION (le rôle n'est pas géré ici pour le moment)
+            // --- CAS MODIFICATION ---
             userService.updateUser(userToEdit.getId(), lastname, firstname, mail, phoneNumber, password);
         }
 
+        // On ferme la petite fenêtre après l'action
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Permet au Dashboard de dire à cette fenêtre : 
+     * "Tiens, voici l'utilisateur à modifier" (ou null si c'est un ajout).
+     */
     public void setUserToEdit(User user) {
         this.userToEdit = user;
+        
         if (user != null) {
+            // Mode EDITION : On remplit les champs avec les données actuelles
             firstnamefield.setText(user.getFirstname());
             lastnamefield.setText(user.getLastname());
             mailfield.setText(user.getMail());
@@ -94,11 +126,12 @@ public class AddUserController {
 
             actionButton.setText("Modifier");
             titleText.setText("Modifier utilisateur");
-            roleComboBox.setDisable(true); // Désactiver le changement de rôle en édition pour le moment
+            roleListView.setDisable(true); // On désactive le changement de rôles en édition pour rester simple
         } else {
+            // Mode AJOUT : Formulaire vide
             actionButton.setText("Ajouter");
             titleText.setText("Nouvel utilisateur");
-            roleComboBox.setDisable(false);
+            roleListView.setDisable(false);
         }
     }
 }

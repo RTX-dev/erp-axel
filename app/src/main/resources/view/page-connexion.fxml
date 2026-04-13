@@ -11,75 +11,78 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.MainController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2D2E2D;" VBox.vgrow="ALWAYS">
-          <children>
-            <!-- Décoration Moderne : Lignes de données en arrière-plan -->
-            <Line endX="640.0" layoutY="100.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.2" />
-            <Line endX="640.0" layoutY="200.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
-            <Line endX="640.0" layoutY="300.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.15" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #F4F7F6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.MainController">
+   <children>
+      <!-- DÉCORATION DE FOND (Lignes bleues discrètes) -->
+      <Line endX="640.0" layoutY="100.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line endX="640.0" layoutY="300.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line startY="400.0" layoutX="150.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line startY="400.0" layoutX="490.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
 
-            <Line startY="400.0" layoutX="150.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
-            <Line startY="400.0" layoutX="320.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.2" />
-            <Line startY="400.0" layoutX="490.0" stroke="#8ae883" strokeWidth="0.5" opacity="0.1" />
+      <!-- BARRE SUPÉRIEURE (Identité visuelle) -->
+      <Rectangle fill="#1a3a5a" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="640.0" />
+      <Text fill="WHITE" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Text>
 
-            <!-- Petit carré décoratif en haut à gauche -->
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ae883" height="40.0" layoutX="-20.0" layoutY="-20.0" rotate="45.0" stroke="#8ae883" strokeType="INSIDE" width="40.0" opacity="0.5" />
+      <!-- CARTE DE CONNEXION -->
+      <Pane layoutX="185.0" layoutY="75.0" prefHeight="280.0" prefWidth="270.0">
+         <children>
+            <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="280.0" stroke="#D1D9E6" strokeType="INSIDE" strokeWidth="1.0" width="270.0" />
 
-            <!-- Carré central de connexion avec effet "Glace" -->
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#353635" height="300.0" layoutX="185.0" layoutY="50.0" stroke="#8ae883" strokeType="INSIDE" strokeWidth="1.5" width="270.0" />
-
-            <Text fill="#8ae883" layoutX="255.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
-                <font>
-                  <Font name="Arial Bold" size="45.0" />
-                </font>
+            <Text fill="#2C3E50" layoutX="35.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AUTHENTIFICATION" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
             </Text>
 
-            <VBox layoutX="210.0" layoutY="130.0" spacing="20.0" alignment="CENTER">
+            <VBox layoutX="25.0" layoutY="70.0" spacing="15.0">
                <children>
-                  <VBox spacing="8.0">
+                  <VBox spacing="5.0">
                      <children>
-                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail professionnel">
+                        <Text fill="#7F8C8D" text="E-mail professionnel">
                            <font>
-                              <Font name="Arial" size="13.0" />
+                              <Font name="Arial" size="12.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="loginfield" prefHeight="35.0" prefWidth="220.0" promptText="nom@hopital.com" style="-fx-background-color: #3F403F; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-color: #555555; -fx-border-radius: 5;" />
+                        <TextField fx:id="loginfield" prefHeight="35.0" prefWidth="220.0" promptText="nom@hopital.com" style="-fx-background-color: #F8FAFB; -fx-border-color: #D1D9E6; -fx-border-radius: 5; -fx-background-radius: 5;" />
                      </children>
                   </VBox>
 
-                  <VBox spacing="8.0">
+                  <VBox spacing="5.0">
                      <children>
-                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe">
+                        <Text fill="#7F8C8D" text="Mot de passe">
                            <font>
-                              <Font name="Arial" size="13.0" />
+                              <Font name="Arial" size="12.0" />
                            </font>
                         </Text>
-                        <PasswordField fx:id="passwordfield" prefHeight="35.0" prefWidth="220.0" promptText="••••••••" style="-fx-background-color: #3F403F; -fx-text-fill: white; -fx-background-radius: 5; -fx-border-color: #555555; -fx-border-radius: 5;" />
+                        <PasswordField fx:id="passwordfield" prefHeight="35.0" prefWidth="220.0" promptText="••••••••" style="-fx-background-color: #F8FAFB; -fx-border-color: #D1D9E6; -fx-border-radius: 5; -fx-background-radius: 5;" />
                      </children>
                   </VBox>
 
-                  <Button mnemonicParsing="false" onAction="#handleConnectionButun" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #8ae883; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" text="CONNEXION" textFill="#2D2E2D">
+                  <Button mnemonicParsing="false" onAction="#handleConnectionButun" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #1a3a5a; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;" text="SE CONNECTER" textFill="WHITE">
                       <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Arial" size="13.0" />
                       </font>
                   </Button>
                </children>
             </VBox>
+         </children>
+      </Pane>
 
-            <Text fx:id="errormsg" fill="#ff6b6b" layoutX="185.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="270.0">
-               <font>
-                  <Font name="Arial Italic" size="12.0" />
-               </font>
-            </Text>
+      <!-- MESSAGES ET ACCÈS DIRECT -->
+      <Text fx:id="errormsg" fill="#E74C3C" layoutX="185.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="270.0">
+         <font>
+            <Font name="Arial Italic" size="11.0" />
+         </font>
+      </Text>
 
-            <Button layoutX="520.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleDashboard" style="-fx-background-color: transparent; -fx-border-color: #555555; -fx-border-radius: 5;" text="ACCÈS DIRECT" textFill="#888888">
-                <font>
-                  <Font name="Arial" size="10.0" />
-                </font>
-            </Button>
-          </children>
-    </AnchorPane>
-  </children>
-</VBox>
+      <Button layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleDashboard" style="-fx-background-color: transparent; -fx-border-color: #D1D9E6; -fx-border-radius: 5;" text="Mode démo" textFill="#95A5A6">
+          <font>
+            <Font name="Arial" size="10.0" />
+          </font>
+      </Button>
+   </children>
+</AnchorPane>

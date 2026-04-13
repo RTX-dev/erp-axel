@@ -3,48 +3,59 @@ package cc.lery.session;
 import cc.lery.model.User;
 
 /**
- * Le SessionManager est une classe qui permet de gérer l'état de la session de l'utilisateur.
- * Elle permet de savoir qui est connecté, son rôle, et de gérer sa déconnexion.
+ * SessionManager : Gère l'utilisateur actuellement connecté.
+ * Toutes ses méthodes sont 'static', ce qui signifie qu'on peut les appeler 
+ * partout dans l'application sans créer d'objet (ex: SessionManager.isAdmin()).
  */
 public class SessionManager {
 
-    /**
-     * Variable statique qui contient l'utilisateur connecté pendant toute la durée de l'exécution du programme.
-     * Cette variable est accessible de partout dans l'application via les méthodes statiques ci-dessous.
-     */
+    // L'utilisateur actuellement connecté au système (null si personne n'est connecté).
     private static User currentUser;
 
     /**
-     * Méthode appelée lors d'une connexion réussie (dans LoginController ou UserService.validateUser).
-     * Stocke les informations de l'utilisateur (incluant son rôle) dans la mémoire de l'application.
-     * @param user L'objet User récupéré de la base de données.
+     * Enregistre l'utilisateur au moment de la connexion réussie.
      */
     public static void login(User user) {
         currentUser = user;
     }
 
     /**
-     * Retourne l'utilisateur actuellement connecté.
-     * Utilisé pour récupérer ses informations (nom, rôle, etc.) n'importe où dans le code.
-     * @return L'objet User connecté, ou null si personne n'est connecté.
+     * Récupère l'objet User complet de la personne connectée.
      */
     public static User getUser() {
         return currentUser;
     }
 
     /**
-     * Réinitialise la session.
-     * Méthode appelée lors du clic sur le bouton "Déconnexion".
+     * Déconnecte l'utilisateur en vidant la variable currentUser.
      */
     public static void logout() {
         currentUser = null;
     }
 
     /**
-     * Vérifie si un utilisateur est actuellement authentifié.
-     * @return true si une session est active, false sinon.
+     * Vérifie si quelqu'un est actuellement connecté.
      */
     public static boolean isLogged() {
         return currentUser != null;
+    }
+
+    /**
+     * Vérifie si l'utilisateur connecté possède un rôle spécifique (ex: ADMIN).
+     * @param roleName Le nom du rôle à tester.
+     * @return true si l'utilisateur a ce rôle dans sa liste, false sinon.
+     */
+    public static boolean hasRole(String roleName) {
+        if (!isLogged()) return false;
+        
+        // On demande à l'objet User s'il possède ce rôle dans sa liste 'roles'.
+        return currentUser.hasRole(roleName);
+    }
+
+    /**
+     * Raccourci pratique pour savoir si l'utilisateur connecté est un Administrateur.
+     */
+    public static boolean isAdmin() {
+        return hasRole("ADMIN");
     }
 }

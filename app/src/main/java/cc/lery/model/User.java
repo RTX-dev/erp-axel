@@ -1,29 +1,32 @@
 package cc.lery.model;
 
 import org.mindrot.jbcrypt.BCrypt;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Modèle de données représentant un Utilisateur.
- * Contient les informations personnelles, le mot de passe haché et le rôle de l'utilisateur.
+ * Modèle User : Représente un utilisateur dans l'application.
+ * C'est une classe de données (POJO) utilisée pour transporter les informations 
+ * entre la base de données et l'interface graphique.
  */
 public class User {
 
-    private Integer id; // ID de l'utilisateur (généré par la base de données)
-    private String lastname; // Nom de famille
-    private String firstname; // Prénom
-    private String mail; // Adresse e-mail (unique en DB)
-    private String phoneNumber; // Numéro de téléphone
-    private String password; // Mot de passe (stocké sous forme hachée avec BCrypt)
-    private String role; // Rôle de l'utilisateur (ex: "ADMIN", "MEDECIN")
+    // Propriétés de l'utilisateur correspondant aux colonnes de la table 'users' SQL.
+    private Integer id;
+    private String lastname;
+    private String firstname;
+    private String mail;
+    private String phoneNumber;
+    private String password;
+    
+    // Liste des rôles de l'utilisateur (ex: ["ADMIN", "MEDECIN"])
+    private List<String> roles = new ArrayList<>(); 
 
-    // Constructeur par défaut nécessaire pour certains frameworks ou manipulations simples.
+    /** Constructeur vide (nécessaire pour certains frameworks comme Hibernate/Spring) */
     public User() {
     }
 
-    /**
-     * Constructeur complet pour initialiser un utilisateur avec toutes ses informations.
-     * Utilisé lors de la récupération des données depuis la base de données.
-     */
+    /** Constructeur complet pour créer un utilisateur avec toutes ses infos. */
     public User(int id ,String nom, String prenom,String mail, String telephone, String mdp) {
         this.id = id;
         this.lastname = nom;
@@ -33,15 +36,14 @@ public class User {
         this.password = mdp;
     }
 
-    /**
-     * Constructeur simplifié sans mot de passe.
-     * Utilisé pour l'affichage dans les listes (TableView) où le mot de passe n'est pas nécessaire.
-     */
+    /** Constructeur sans mot de passe (utilisé pour l'affichage simple). */
     public User(int id ,String nom, String prenom,String mail, String telephone) {
         this(id, nom, prenom, mail, telephone, null);
     }
 
-    // Getters et Setters pour accéder et modifier les propriétés de l'objet de manière sécurisée.
+    // --- GETTERS ET SETTERS ---
+    // Ces méthodes permettent d'accéder (get) ou de modifier (set) les propriétés privées.
+
     public String getMail() { return mail; }
     public void setMail(String mail) { this.mail = mail; }
 
@@ -56,34 +58,42 @@ public class User {
 
     public String getLastname() { return lastname; }
     public void setLastname(String name) { this.lastname = name; }
-    
+
     public String getFirstname() { return firstname; }
     public void setFirstname(String firstname) { this.firstname = firstname; }
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-
-    /**
-     * Hache un mot de passe en utilisant l'algorithme BCrypt.
-     * Cette méthode est utilisée avant d'enregistrer le mot de passe dans la base de données.
-     * @param password Le mot de passe en clair.
-     * @return Le mot de passe haché et sécurisé.
-     */
-    public String hashpassword(String password){
-        // BCrypt génère un "salt" aléatoire pour renforcer la sécurité du hachage.
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-        return hashed;
+    /** Retourne la liste complète des rôles de l'utilisateur. */
+    public List<String> getRoles() {
+        return roles;
     }
 
-    /**
-     * Vérifie si un mot de passe en clair correspond au mot de passe haché stocké.
-     * Utilisé lors de la connexion de l'utilisateur.
-     * @param plainPassword Le mot de passe saisi par l'utilisateur.
-     * @param hashPassword Le mot de passe haché récupéré de la base de données.
-     * @return true si les mots de passe correspondent, false sinon.
+    /** Remplace toute la liste des rôles par une nouvelle. */
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    /** Ajoute un seul rôle à la liste existante. */
+    public void setRole(String role){
+        this.roles.add(role);
+    }
+    
+    /** Vérifie si l'utilisateur possède un rôle spécifique (ex: hasRole("ADMIN")). */
+    public boolean hasRole(String roleName) {
+        return roles.contains(roleName);
+    }
+
+    /** 
+     * Hache le mot de passe avant de l'enregistrer en base de données.
+     * Utilise BCrypt pour la sécurité (on ne stocke jamais les mots de passe en clair).
+     */
+    public String hashpassword(String password){
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
+    /** 
+     * Vérifie si un mot de passe saisi correspond au hachage stocké en base.
      */
     public Boolean checkpassword (String plainPassword,String hashPassword){
-        // BCrypt compare les deux valeurs de manière sécurisée.
         return BCrypt.checkpw(plainPassword, hashPassword);
     }
 }

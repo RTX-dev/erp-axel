@@ -11,65 +11,66 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #2D2E2D;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.DashController">
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #F4F7F6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cc.lery.controller.DashController">
    <children>
-      <!-- DÉCORATION DE FOND (Lignes modernes) -->
-      <Line endX="1200.0" layoutY="100.0" stroke="#8ae883" strokeWidth="0.3" opacity="0.1" />
-      <Line endX="1200.0" layoutY="250.0" stroke="#8ae883" strokeWidth="0.3" opacity="0.15" />
-      <Line endX="1200.0" layoutY="500.0" stroke="#8ae883" strokeWidth="0.3" opacity="0.1" />
-      <Line startY="700.0" layoutX="200.0" stroke="#8ae883" strokeWidth="0.3" opacity="0.1" />
-      <Line startY="700.0" layoutX="1000.0" stroke="#8ae883" strokeWidth="0.3" opacity="0.1" />
+      <!-- DÉCORATION DE FOND (Grille légère bleue) -->
+      <Line endX="1200.0" layoutY="100.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line endX="1200.0" layoutY="250.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line endX="1200.0" layoutY="500.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line startY="700.0" layoutX="200.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
+      <Line startY="700.0" layoutX="1000.0" stroke="#1a3a5a" strokeWidth="0.5" opacity="0.05" />
 
-      <!-- BARRE SUPÉRIEURE (Header) -->
-      <Rectangle fill="#1E1F1E" height="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
-      <Text fill="#8ae883" layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
+      <!-- BARRE SUPÉRIEURE (Header Bleu Sombre) -->
+      <Rectangle fill="#1a3a5a" height="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
+      <Text fill="WHITE" layoutX="30.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EPITO">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Text>
-      <Text fill="#666666" layoutX="130.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|  DASHBOARD DE GESTION">
+      <Text fill="#BDC3C7" layoutX="130.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="|  SYSTÈME DE GESTION HOSPITALIÈRE">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Text>
 
-      <!-- BOUTON DÉCONNEXION (Power) -->
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1150.0" layoutY="18.0" onMouseClicked="#BackToLogin" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <!-- BOUTON DÉCONNEXION -->
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1150.0" layoutY="20.0" onMouseClicked="#BackToLogin" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@image/download-power-on-off-white-button-icon-png-701751695034570myxdqcohgf-removebg-preview.png" />
          </image>
       </ImageView>
 
-      <!-- CONTENU PRINCIPAL (Grille de cartes) -->
-      <HBox layoutX="50.0" layoutY="100.0" spacing="40.0">
+      <!-- CONTENU PRINCIPAL -->
+      <HBox layoutX="50.0" layoutY="110.0" spacing="40.0">
          <children>
 
-            <!-- SECTION : UTILISATEURS (Laboratoire) -->
+            <!-- SECTION : UTILISATEURS -->
             <VBox spacing="15.0">
                <children>
                   <Pane prefHeight="500.0" prefWidth="530.0">
                      <children>
-                        <!-- Cadre de la carte -->
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#353635" height="500.0" stroke="#8ae883" strokeType="INSIDE" strokeWidth="1.0" width="530.0" opacity="0.9" />
+                        <!-- Carte Blanche avec ombre légère -->
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="500.0" stroke="#D1D9E6" strokeType="INSIDE" strokeWidth="1.0" width="530.0" />
 
                         <!-- Header de la carte -->
                         <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="15.0" prefWidth="490.0" spacing="10.0">
                            <children>
-                              <Text fill="WHITE" text="GESTION DES UTILISATEURS">
+                              <Text fill="#2C3E50" text="Personnel &amp; Utilisateurs">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <Button fx:id="editUserBtn" mnemonicParsing="false" onAction="#EditUser" style="-fx-background-color: transparent; -fx-border-color: #8ae883; -fx-border-radius: 5;" text="Modifier" textFill="#8ae883">
+                              <Button fx:id="editUserBtn" mnemonicParsing="false" onAction="#EditUser" style="-fx-background-color: transparent; -fx-border-color: #1a3a5a; -fx-border-radius: 5;" text="Modifier" textFill="#1a3a5a">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="addUserBtn" mnemonicParsing="false" onAction="#AddUser" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #8ae883; -fx-background-radius: 5; -fx-cursor: hand;" text="+" textFill="#2D2E2D">
+                              <Button fx:id="addUserBtn" mnemonicParsing="false" onAction="#AddUser" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #1a3a5a; -fx-background-radius: 5; -fx-cursor: hand;" text="+" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="14.0" />
                                  </font>
@@ -77,11 +78,10 @@
                            </children>
                         </HBox>
 
-                        <!-- Tableau des utilisateurs -->
-                        <TableView fx:id="userTable" layoutX="20.0" layoutY="60.0" prefHeight="410.0" prefWidth="490.0" style="-fx-background-color: #2D2E2D; -fx-border-color: transparent; -fx-border-radius: 10; -fx-background-radius: 10;">
+                        <TableView fx:id="userTable" layoutX="20.0" layoutY="60.0" prefHeight="410.0" prefWidth="490.0" style="-fx-background-color: white; -fx-border-color: #F0F3F4;">
                            <columns>
                               <TableColumn fx:id="idColumn" prefWidth="120.0" text="ID" />
-                              <TableColumn fx:id="lastnameColumn" prefWidth="350.0" text="Nom d'utilisateur" />
+                              <TableColumn fx:id="lastnameColumn" prefWidth="350.0" text="Nom complet" />
                            </columns>
                         </TableView>
                      </children>
@@ -89,31 +89,31 @@
                </children>
             </VBox>
 
-            <!-- SECTION : PRÉLÈVEMENTS (Exemple) -->
+            <!-- SECTION : PRÉLÈVEMENTS -->
             <VBox spacing="15.0">
                <children>
                   <Pane prefHeight="500.0" prefWidth="530.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#353635" height="500.0" stroke="#555555" strokeType="INSIDE" strokeWidth="1.0" width="530.0" opacity="0.7" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="500.0" stroke="#D1D9E6" strokeType="INSIDE" strokeWidth="1.0" width="530.0" />
                         <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="15.0" prefWidth="490.0" spacing="10.0">
                            <children>
-                              <Text fill="#AAAAAA" text="PRÉLÈVEMENTS RÉCENTS">
+                              <Text fill="#2C3E50" text="Analyses en cours">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
                               </Text>
                               <Pane HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #555555; -fx-border-radius: 5;" text="Voir tout" textFill="#AAAAAA">
+                              <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #95A5A6; -fx-border-radius: 5;" text="Archives" textFill="#7F8C8D">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
                            </children>
                         </HBox>
-                        <TableView layoutX="20.0" layoutY="60.0" prefHeight="410.0" prefWidth="490.0" style="-fx-background-color: #2D2E2D; -fx-background-radius: 10;">
+                        <TableView layoutX="20.0" layoutY="60.0" prefHeight="410.0" prefWidth="490.0" style="-fx-background-color: white;">
                            <columns>
-                              <TableColumn prefWidth="150.0" text="Date" />
-                              <TableColumn prefWidth="320.0" text="Patient" />
+                              <TableColumn prefWidth="150.0" text="Date de prélèvement" />
+                              <TableColumn prefWidth="320.0" text="Nom du Patient" />
                            </columns>
                         </TableView>
                      </children>
@@ -124,9 +124,21 @@
          </children>
       </HBox>
 
-      <!-- BARRE DE STATUS (Bas) -->
-      <Rectangle fill="#1E1F1E" height="30.0" layoutY="670.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
-      <Text fill="#555555" layoutX="30.0" layoutY="690.0" text="Connecté en tant que : " />
-      <Text fill="#8ae883" layoutX="160.0" layoutY="690.0" text="Administrateur" />
+      <!-- BARRE DE STATUS (Pied de page corrigé) -->
+      <Rectangle fill="#ECF0F1" height="35.0" layoutY="665.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
+      <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="672.0" spacing="10.0">
+         <children>
+            <Text fill="#7F8C8D" text="État du système : " />
+            <Pane prefHeight="10.0" prefWidth="10.0">
+               <children>
+                  <Circle fill="#27AE60" layoutX="5.0" layoutY="10.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </children>
+            </Pane>
+            <Text fill="#27AE60" text="Connecté" />
+            <Pane prefWidth="50.0" />
+            <Text fill="#7F8C8D" text="Utilisateur : " />
+            <Text fx:id="userStatusLabel" fill="#1a3a5a" text="En attente..." />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
