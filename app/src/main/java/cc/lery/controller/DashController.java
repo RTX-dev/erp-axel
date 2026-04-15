@@ -3,7 +3,9 @@ package cc.lery.controller;
 import java.io.IOException;
 import java.util.List;
 
+import cc.lery.model.Sample;
 import cc.lery.model.User;
+import cc.lery.service.SampleService;
 import cc.lery.service.UserService;
 import cc.lery.session.SessionManager;
 import javafx.collections.FXCollections;
@@ -37,9 +39,18 @@ public class DashController {
     private TableColumn<User, String> lastnameColumn; // Colonne pour le Nom
     
     @FXML
-    private Button addUserBtn;   // Bouton "+" (Ajout)
+    private Button addUserBtn;    // Bouton "+" (Ajout utilisateur)
     @FXML
-    private Button editUserBtn;  // Bouton "crayon" (Edition)
+    private Button editUserBtn;   // Bouton "crayon" (Edition utilisateur)
+    @FXML
+    private Button addSampleBtn;  // Bouton "+" (Ajout prélèvement)
+
+    @FXML
+    private TableView<Sample> sampleTable;
+    @FXML
+    private TableColumn<Sample, String> receptionDateColumn;
+    @FXML
+    private TableColumn<Sample, String> namePatientColumn;
 
     /**
      * Initialisation : s'exécute dès que la page s'affiche.
@@ -64,6 +75,13 @@ public class DashController {
 
         // On remplit le tableau avec les données de la base.
         loadUsers();
+
+        // Colonnes du tableau des prélèvements
+        receptionDateColumn.setCellValueFactory(new PropertyValueFactory<>("receptionDate"));
+        namePatientColumn.setCellValueFactory(new PropertyValueFactory<>("namePatient"));
+
+        // On remplit le tableau des prélèvements
+        loadSamples();
     }
 
     /**
@@ -89,6 +107,30 @@ public class DashController {
     @FXML
     private void AddUser(ActionEvent event) {
         ouvrirFenetreUtilisateur(null, "Nouvel utilisateur");
+    }
+
+    /**
+     * Ouvre la modale pour ajouter un prélèvement.
+     */
+    @FXML
+    private void AddSample(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/addSamplePage.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Nouveau prélèvement");
+            stage.initModality(Modality.APPLICATION_MODAL); // Bloque le dashboard derrière
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // Attend la fermeture avant de continuer
+            loadSamples(); // Rafraîchit le tableau après l'ajout
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Impossible d'ouvrir la fenêtre : " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -134,13 +176,22 @@ public class DashController {
     }
 
     /**
-     * Charge les données depuis la base et rafraîchit le tableau.
+     * Charge les utilisateurs depuis la base et rafraîchit le tableau.
      */
     public void loadUsers() {
         UserService userService = new UserService();
         List<User> users = userService.listAllUsers();
-        // Pour les tableaux JavaFX, on utilise une ObservableList
         ObservableList<User> userList = FXCollections.observableArrayList(users);
         userTable.setItems(userList);
+    }
+
+    /**
+     * Charge les prélèvements depuis la base et rafraîchit le tableau.
+     */
+    public void loadSamples() {
+        SampleService sampleService = new SampleService();
+        List<Sample> samples = sampleService.listAllSamples();
+        ObservableList<Sample> sampleList = FXCollections.observableArrayList(samples);
+        sampleTable.setItems(sampleList);
     }
 }
